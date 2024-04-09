@@ -1,0 +1,11 @@
+# Fronend and backend should be in parent directory
+# Compose file should be in root
+services:
+  backend:
+    build: test_node/.
+    ports:
+      - "4000:4000"
+  frontend:
+    build: react_redux_app/.
+    ports:
+      - "3000:3000"

@@ -22,8 +22,7 @@ exports.singUp = async (req, res) => {
     const salt = await bcrypt.genSalt(10);
     const hasPwd = await bcrypt.hash(password, salt);
     
-    const userDetails = await userModel({ userName, email, password: hasPwd })
-    console.log(userDetails)
+    const userDetails = await userModel({ userName, email, password: hasPwd }).save()
     
     return res.status(201).json({ status: "success", userDetails, isError: false });
 
