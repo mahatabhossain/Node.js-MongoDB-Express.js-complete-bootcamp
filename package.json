@@ -4,8 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon app.js",
+    "build": "tsc",
+    "run": "node build/app.js",
+    "build:watch": "tsc --watch",
+    "run:watch": "nodemon build/app.js --watch build git status",
     "swagger-autogen": "node swagger.js",
+    "start": "npm-run-all --parallel build:watch run:watch",
     "test": "jest"
   },
   "keywords": [],
@@ -13,17 +17,25 @@
   "license": "ISC",
   "devDependencies": {
     "@shelf/jest-mongodb": "^4.2.0",
+    "@types/bcrypt": "^5.0.2",
     "@types/cors": "^2.8.17",
     "@types/jsonwebtoken": "^9.0.6",
+    "@types/source-map-support": "^0.5.10",
     "@types/swagger-ui-express": "^4.1.6",
     "express": "^4.19.2",
     "jest": "^29.7.0",
     "mongodb-memory-server": "^9.1.6",
-    "supertest": "^6.3.4"
+    "nodemon": "^3.1.0",
+    "npm-run-all": "^4.1.5",
+    "supertest": "^6.3.4",
+    "ts-loader": "^9.5.1",
+    "typescript": "^5.4.5"
   },
   "dependencies": {
+    "@types/express": "^4.17.21",
     "bcrypt": "^5.1.1",
     "cors": "^2.8.5",
+    "express-validator": "^7.0.1",
     "joi": "^17.12.3",
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.1.3",
