@@ -20,14 +20,25 @@ exports.resolvers = {
             const users = yield userModel_1.userModel.find();
             console.log(users);
             return users;
-        })
+        }),
     },
     Mutation: {
         createUser: (parent, args, context, info) => __awaiter(void 0, void 0, void 0, function* () {
             const { userName, email, password } = args.user;
             const user = new userModel_1.userModel({ userName, email, password }).save();
             return user;
-        })
-    }
+        }),
+        updateUser: (parent, args, context, info) => __awaiter(void 0, void 0, void 0, function* () {
+            const { id } = args;
+            const { userName, email, password } = args.user;
+            const updatedDetails = yield userModel_1.userModel.findByIdAndUpdate(id, { userName, email, password }, { new: true });
+            return updatedDetails;
+        }),
+        deleteUser: (parent, args, context, info) => __awaiter(void 0, void 0, void 0, function* () {
+            const { id } = args;
+            const deleteIfo = yield userModel_1.userModel.findByIdAndDelete({ _id: id });
+            return 'Deleted';
+        }),
+    },
 };
 //# sourceMappingURL=resolver.js.map
